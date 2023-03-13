@@ -14,3 +14,9 @@
   border-width: 1rem;
   border-color: black;
 }
+
+.task_info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
