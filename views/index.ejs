@@ -12,13 +12,42 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/side_bar.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/new_task_dropdown.css" />
+  <link rel="stylesheet" href="/styles/tasks_contianer.css" />
+
+
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+
 </head>
 
 <body>
-  <h1>Have fun! 🥔</h1>
+  <nav class="nav_bar">
+    <button>Logout</button>
+    <h2>Smart-To-Do-List</h2>
+    <button>New Task!</button>
+  </nav>
+
+  <div class="new_task_dropdown">
+    <p>New Task Dropdown</p>
+  </div>
+
+  <section class="tasks_contianer">
+    <div>Task One</div>
+    <div>Task Two</div>
+    <div>Task Three</div>
+    <div>Task Four</div>
+    <div>Task Five</div>
+  </section>
+
+  <div>
+
+  </div>
+
+  <footer class="navbar_footer"><%- include('./partials/footer.ejs') %></footer>
 </body>
 
 </html>
