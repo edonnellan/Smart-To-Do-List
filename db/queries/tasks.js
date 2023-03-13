@@ -1,7 +1,7 @@
 const db = require('../connection');
 
 const getTasks = () => {
-  return db.query('SELECT * FROM users;')
+  return db.query('SELECT * FROM tasks;')
     .then(data => {
       return data.rows;
     });

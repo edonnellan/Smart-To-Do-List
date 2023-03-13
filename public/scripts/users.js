@@ -7,6 +7,7 @@ $(() => {
     })
     .done((response) => {
       const $usersList = $('#users');
+      console.log(response);
       $usersList.empty();
 
       for(const user of response.users) {
