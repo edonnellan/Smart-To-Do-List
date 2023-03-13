@@ -18,7 +18,14 @@
     <link rel="stylesheet" href="/styles/tasks_contianer.css" />
 
     <script src="/vendor/jquery-3.0.0.js"></script>
-    <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/tasks.js"></script>
+  <style>
+    table, tr, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
   </head>
 
   <body>
@@ -31,12 +38,17 @@
     <section id="side_layout">
     <nav class="side_nav">
       <ul class="list">
-        <li>Home</li>
-        <li>Food</li>
-        <li>Products</li>
-        <li>Movies & TV</li>
-        <li>Books</li>
+        <li><button id="category-all">Home</button></li>
+        <li><button id="category-food">Food</button></li>
+        <li><button id="category-products">Products</button></li>
+        <li><button id="category-movies-tv">Movies&TV</button></li>
+        <li><button id="category-books">Books</button></li>
       </ul>
+      <!-- <button id="category-products">Products</button>
+  <button id="category-food">Food</button>
+  <button id="category-movies-tv">Movies/TV</button>
+  <button id="category-books">Books</button>
+  <button id="category-all">All</button> -->
     </nav>
 
     <div id="main_content">
@@ -53,6 +65,10 @@
       </div>
     </div>
 
+    <div>TASKS</div>
+  <table id="tasks">
+
+  </table>
 
 
     <section class="tasks_contianer">
@@ -68,6 +84,9 @@
       <div class="task_box">Task Three</div>
       <div class="task_box">Task Four</div>
       <div class="task_box">Task Five</div>
+
+
+
     </section>
 
   </div>
@@ -76,26 +95,11 @@
       <p>FOOTER</p>
     </footer>
   </body>
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/tasks.js"></script>
-  <style>
-    table, tr, th, td {
-      border: 1px solid black;
-      border-collapse: collapse;
-    }
-  </style>
+
 </head>
 
-<body>
-  <button id="category-products">Products</button>
-  <button id="category-food">Food</button>
-  <button id="category-movies-tv">Movies/TV</button>
-  <button id="category-books">Books</button>
-  <button id="category-all">All</button>
-  <div>TASKS</div>
-  <table id="tasks">
 
-  </table>
-</body>
+
+
 
 </html>
