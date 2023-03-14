@@ -1,25 +1,27 @@
 // Client facing scripts here
+let loadTasks
+
 $(() => { //this is document ready
   let tasks = [];
   const $tasksList = $('#tasks');
   let category = 'all';
-  $('#category-products').on('click', ()=>{
+  $('#category-products').on('click', () => {
     category = 'products';
     filterFunction();
   });
-  $('#category-books').on('click', ()=>{
+  $('#category-books').on('click', () => {
     category = 'books';
     filterFunction();
   });
-  $('#category-food').on('click', ()=>{
+  $('#category-food').on('click', () => {
     category = 'food';
     filterFunction();
   });
-  $('#category-movies-tv').on('click', ()=>{
+  $('#category-movies-tv').on('click', () => {
     category = 'movies_tv';
     filterFunction();
   });
-  $('#category-all').on('click', ()=>{
+  $('#category-all').on('click', () => {
     category = 'all';
     filterFunction();
   });
@@ -29,7 +31,7 @@ $(() => { //this is document ready
     $tasksList.empty();
     const filtered = tasks.filter((task) => {
       if (category === 'all') {
-        return true
+        return true;
       }
       return task.category === category;
     });
@@ -60,14 +62,15 @@ $(() => { //this is document ready
       );
     }
   };
-
-  $.ajax({
-    method: 'GET',
-    url: '/api/tasks'
-  })
-    .done((response) => {
-      tasks = response.tasks;
-      filterFunction();
-      loadTasks();
-    });
+  loadTasks = function() {
+    $.ajax({
+      method: 'GET',
+      url: '/api/tasks'
+    })
+      .done((response) => {
+        tasks = response.tasks;
+        filterFunction();
+      });
+  }
+  loadTasks();
 });

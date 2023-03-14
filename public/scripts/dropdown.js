@@ -5,7 +5,6 @@ $(document).ready(function (){
     $('.new_task_dropdown').slideToggle();
   });
 
-
   $('#new_task_form').submit((function(event){
     event.preventDefault();
 
@@ -16,8 +15,8 @@ $(document).ready(function (){
       success: (response) => {
         const data = response.newTask;
         console.log(response.newTask);
+        loadTasks();
       }
     })
-
   }))
 });
