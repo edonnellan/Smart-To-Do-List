@@ -5,14 +5,17 @@ html {
   margin: 0;
 }
 
-#side_layout {
+#main_content {
   display: flex;
+  padding-top: 3rem;
   width: 100%;
 }
 
-#main_content {
+#task_content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
