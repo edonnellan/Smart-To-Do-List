@@ -24,10 +24,32 @@
 </head>
 
 <body>
+  <form method="POST" action="/api/tasks">
+    <input name="title" placeholder="title">
+    <input name="category" placeholder="category">
+    <input name="priority" placeholder="priority">
+    <input name="is_completed" placeholder="is_completed">
+    <input name="is_deleted" placeholder="is_deleted">
+    <input type="submit" id="submit">
+  </form>
   <div>TASKS</div>
-  <table id="tasks">
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Completed</th>
+        <th>Priority</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="task-body">
 
+    </tbody>
   </table>
+
+
 </body>
 
 </html>

@@ -14,4 +14,8 @@ router.get('/', (req, res) => {
     });
 });
 
+router.post('/', (req, res) => {
+  const item = req.body.input;
+});
+
 module.exports = router;
