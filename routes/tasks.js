@@ -2,8 +2,45 @@ const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
 
+const categoryFinder = function(taskTitle) {
+  const taskName = taskTitle.toLowerCase();
+  if (taskName.includes('buy') ||
+    taskName.includes('groceries') ||
+    taskName.includes('amazon') ||
+    taskName.includes('order') ||
+    taskName.includes('purchase')
+  ) {
+    return 'products';
+  } else if (
+    taskName.includes('watch') ||
+    taskName.includes('stream') ||
+    taskName.includes('movie') ||
+    taskName.includes('film') ||
+    taskName.includes('TV')
+  ) {
+    return 'movies_tv';
+  } else if (
+    taskName.includes('read') ||
+    taskName.includes('book')
+  ) {
+    return 'books';
+  } else if (
+    taskName.includes('eat') ||
+    taskName.includes('food')
+  ) {
+    return 'food';
+  } else {
+    return 'uncategorized';
+  }
+ };
+
 
 const addTask = function(title, category, priority) {
+
+  if (category == 'uncategorized') {
+    category = categoryFinder(title)
+  };
+
   const taskValues = [
     `${title}`,
     `${category}`,
