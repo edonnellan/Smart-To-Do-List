@@ -17,9 +17,13 @@
   <link rel="stylesheet" href="/styles/footer.css" />
   <link rel="stylesheet" href="/styles/new_task_dropdown.css" />
   <link rel="stylesheet" href="/styles/tasks_contianer.css" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" integrity="sha512-CryKbMe7sjSCDPl18jtJI5DR5jtkUWxPXWaLCst6QjH8wxDexfRJic2WRmRXmstr2Y8SxDDWuBO6CQC6IE4KTA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/tasks.js"></script>
+  <script defer src="/scripts/dropdown.js"></script>
   <style>
     table,
     tr,
@@ -36,7 +40,7 @@
   <nav class="nav_bar">
     <button>Logout</button>
     <h2>Smart-To-Do-List</h2>
-    <button>New Task!</button>
+    <button id="new-task">New Task!</button>
   </nav>
 
   <section id="side_layout">
@@ -48,11 +52,6 @@
         <li><button id="category-movies-tv">Movies&TV</button></li>
         <li><button id="category-books">Books</button></li>
       </ul>
-      <!-- <button id="category-products">Products</button>
-  <button id="category-food">Food</button>
-  <button id="category-movies-tv">Movies/TV</button>
-  <button id="category-books">Books</button>
-  <button id="category-all">All</button> -->
     </nav>
 
     <div id="main_content">
@@ -69,28 +68,10 @@
         </div>
       </div>
 
-      <div>TASKS</div>
-      <table id="tasks">
-
-      </table>
-
-
       <section class="tasks_contianer">
-        <div class="task_box">Task One
-          <span class="task_info">
-            <p>category</p>
-            <p>date</p>
-            <p>priority</p>
-            <p>edit</p>
-          </span>
+        <div id="tasks">
+
         </div>
-        <div class="task_box">Task Two</div>
-        <div class="task_box">Task Three</div>
-        <div class="task_box">Task Four</div>
-        <div class="task_box">Task Five</div>
-
-
-
       </section>
 
     </div>
