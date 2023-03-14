@@ -1,0 +1,22 @@
+.tasks_contianer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 70%;
+
+}
+
+.task_box {
+  width: 100%;
+  padding: 5%;
+  margin: 5%;
+  background-color: aquamarine;
+  border-width: 1rem;
+  border-color: black;
+}
+
+.task_info {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}

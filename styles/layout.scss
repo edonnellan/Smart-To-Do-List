@@ -5,6 +5,16 @@ html {
   margin: 0;
 }
 
+#side_layout {
+  display: flex;
+  width: 100%;
+}
+
+#main_content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .task {
   border: 1px solid red;
 }
