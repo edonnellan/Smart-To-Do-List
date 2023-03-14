@@ -42,7 +42,7 @@ $(() => { //this is document ready
       return task.category === category;
     });
     for (const task of filtered) {
-      // $(`<li class="task">`).text(task).appendTo($tasksList);
+      if (task.is_completed !== true)
       ($tasksList).append(
         `<tr class="task-row row-${task.id}"><td>${task.id}</td>
       <td>${task.title}</td>
