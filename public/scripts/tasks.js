@@ -25,15 +25,16 @@ $(() => { //this is document ready
   });
 
   const filterFunction = () => {
+    // category filter
     $tasksList.empty();
-
-
     const filtered = tasks.filter((task) => {
       if (category === 'all') {
         return true
       }
       return task.category === category;
     });
+
+    // tasks list
     for (const task of filtered) {
       let priorityColor = "";
       if (task.priority === 1) {
@@ -44,13 +45,17 @@ $(() => { //this is document ready
         priorityColor = "🟢";
       }
       ($tasksList).append(
-        `<div class='tasks-list'>
+        `<div class='task-chkbox'>
+        <div class='tasks-list'>
           <div class='task-title'>${task.title}</div>
           <div class='task-category'>${task.category}</div>
           <div class='task-date'>${moment(task.date).format("MMM Do YY")}</div>
           <div class='task-date'>${moment(task.date).fromNow()}</div>
           <div class='task-priority'>${priorityColor}</div>
           <button class="task-edit">Edit</button>
+        </div><label for="my-checkbox" id="check-label">
+        <input type="checkbox" id="my-checkbox" name="my-checkbox">
+      </label>
         </div>`
       );
     }
@@ -62,7 +67,6 @@ $(() => { //this is document ready
   })
     .done((response) => {
       tasks = response.tasks;
-      console.log(response.tasks);
       filterFunction();
     });
 });

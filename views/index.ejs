@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <title>Home Page</title>
-
+  <title>Smart-To-Do-List</title>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,8 +27,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
     integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!--time moment-->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
+  <!-- moment -->
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/tasks.js"></script>
   <script defer src="/scripts/dropdown.js"></script>
@@ -40,11 +39,11 @@
 <body>
   <nav class="nav_bar">
     <button>Logout</button>
-    <h2>Smart-To-Do-List</h2>
+    <h2 class="current_page">Smart-To-Do-List</h2>
     <button id="new-task">New Task!</button>
   </nav>
 
-  <section id="side_layout">
+  <section id="main_content">
     <nav class="side_nav">
       <ul class="list">
         <li><button class="button is-link is-inverted" id="category-all"><i class="fa-solid fa-house"></i></button></li>
@@ -55,31 +54,47 @@
       </ul>
     </nav>
 
-    <div id="main_content">
+    <div id="task_content">
       <div class="new_task_dropdown">
         <form>
-          <label for="task_name">Task Name:</label>
-          <input type="text" name="task_name" />
+          <div class="inputs">
+            <div class="input_item">
+              <label for="task_name">Task Name:</label>
+              <input type="text" name="task_name">
+            </div>
+            <div class="input_item">
+              <label for="task_category">Task Category:</label>
+              <select name="task_category" id="task_category">
+                <option value="uncategorized">uncategorized</option>
+                <option value="food">food</option>
+                <option value="products">products</option>
+                <option value="movies_tv">movies_tv</option>
+                <option value="books">books</option>
+              </select>
+            </div>
+            <div class="input_item">
+              <label for="task_priority">Task Priority:</label>
+              <select name="task_priority" id="task_priority">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+          </div>
+          <input type="submit">
         </form>
-        <br />
-
-        <div class="task_drop_downs">
-          <button>Category Drop-Down</button>
-          <button>Priority Drop-Down</button>
-        </div>
       </div>
 
       <section class="tasks_contianer">
-        <div id="tasks">
-
-        </div>
+        <div id="tasks"></div>
       </section>
-
     </div>
   </section>
+
   <footer class="navbar_footer">
     <p>FOOTER</p>
   </footer>
+
 </body>
 
 

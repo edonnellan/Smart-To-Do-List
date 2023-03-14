@@ -1,18 +1,52 @@
 .new_task_dropdown {
+  border: 4px solid gray;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   background-color: #ffffff;
-  width: 60%;
-  margin: 8%;
-  padding: 5%
+  margin: 2rem 0;
+  padding: 3rem;
+  width: 70%;
+  font-size: larger;
+  display: none;
+
+  form {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    .inputs {
+      width: 70%;
+    }
+    input[type=submit] {
+      background-color: white;
+      padding: 1rem 1.5rem;
+      place-self: center;
+      border-radius: 10px;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background-color: beige;
+      }
+    }
+  }
+  .input_item {
+    padding-bottom: 1em;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    label {
+      width: 50%;
+      font-weight: 600;
+    }
+    input, select {
+      width: 70%;
+      border-radius: 10px;
+      border: 1px solid lightgray;
+      padding: 0.2rem 0 0.2rem 0.5rem;
+    }
 
 
+  }
 }
-
-.task_drop_downs {
-  margin-top: 5%;
-  flex-direction: row;
-}
-
 

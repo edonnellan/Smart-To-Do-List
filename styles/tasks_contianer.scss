@@ -5,7 +5,10 @@
   width: 70%;
   font-family: 'Montserrat', sans-serif;
 
-
+  .task-chkbox {
+    display: flex;
+    justify-content: space-between;
+  }
   .tasks-list {
     border: 3px solid gray;
     border-radius: 10px;
@@ -16,6 +19,7 @@
     align-items: center;
     justify-content: space-between;
     transition: 0.3s ease-in-out;
+    width: 90%;
 
     &:hover{
       box-shadow: 2px 2px darkgray;
@@ -37,6 +41,18 @@
       }
     }
   }
+
+  #check-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input[type=checkbox] {
+      transform: scale(3);
+      margin-right: 1rem;
+      }
+  }
+
 }
+
 
 
