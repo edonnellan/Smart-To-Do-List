@@ -13,10 +13,13 @@ $(document).ready(function (){
       url: "/tasks",
       data: $(this).serialize(),
       success: (response) => {
-        const data = response.newTask;
         console.log(response.newTask);
         loadTasks();
       }
     })
+
+    $('input[name=task_name]').val('');
+    $('#task_category').val('uncategorized');
+    $('#task_priority').val('1');
   }))
 });

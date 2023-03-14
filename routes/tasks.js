@@ -1,9 +1,54 @@
 const express = require('express');
 const router  = express.Router();
 const db = require('../db/connection');
+// const request = require("request");
 
+
+const categoryFinder = function(taskTitle) {
+  const taskName = taskTitle.toLowerCase();
+  if (taskName.includes('buy') ||
+    taskName.includes('groceries') ||
+    taskName.includes('amazon') ||
+    taskName.includes('order') ||
+    taskName.includes('purchase')
+  ) {
+    return 'products';
+  } else if (
+    taskName.includes('watch') ||
+    taskName.includes('stream') ||
+    taskName.includes('movie') ||
+    taskName.includes('film') ||
+    taskName.includes('TV')
+  ) {
+    return 'movies_tv';
+  } else if (
+    taskName.includes('read') ||
+    taskName.includes('book')
+  ) {
+    return 'books';
+  } else if (
+    taskName.includes('eat') ||
+    taskName.includes('food')
+  ) {
+    return 'food';
+  } else {
+    categoryFinderApi(taskTitle);
+  }
+ };
+
+ const categoryFinderApi = function(taskTitle) {
+  console.log("api call");
+  request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
+    const results = JSON.parse(body).items;
+    console.log(results);
+  })
+ };
 
 const addTask = function(title, category, priority) {
+  if (category === 'uncategorized') {
+    category = categoryFinder(title);
+  }
+
   const taskValues = [
     `${title}`,
     `${category}`,
