@@ -35,7 +35,6 @@ $(() => { //this is document ready
       return task.category === category;
     });
     for (const task of filtered) {
-      let dateData = task.date;
       let priorityColor = "";
       if (task.priority === 1) {
         priorityColor = "🔴";
@@ -48,8 +47,8 @@ $(() => { //this is document ready
         `<div class='tasks-list'>
           <div class='task-title'>${task.title}</div>
           <div class='task-category'>${task.category}</div>
-          <div class='task-date'>${task.date}</div>
-          <div class='task-date'>${task.time}</div>
+          <div class='task-date'>${moment(task.date).format("MMM Do YY")}</div>
+          <div class='task-date'>${moment(task.date).fromNow()}</div>
           <div class='task-priority'>${priorityColor}</div>
           <button class="task-edit">Edit</button>
         </div>`
