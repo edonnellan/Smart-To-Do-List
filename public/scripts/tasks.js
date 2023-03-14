@@ -35,9 +35,6 @@ $(() => { //this is document ready
       return task.category === category;
     });
     for (const task of filtered) {
-<<<<<<< HEAD
-      if (task.is_completed !== true)
-=======
       let priorityColor = "";
       if (task.priority === 1) {
         priorityColor = "🔴";
@@ -46,7 +43,6 @@ $(() => { //this is document ready
       } else {
         priorityColor = "🟢";
       }
->>>>>>> master
       ($tasksList).append(
         `<div class='tasks-list'>
           <div class='task-title'>${task.title}</div>
