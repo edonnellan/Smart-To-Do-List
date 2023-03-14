@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="/styles/new_task_dropdown.css" />
     <link rel="stylesheet" href="/styles/tasks_contianer.css" />
 
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- bulma stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/tasks.js"></script>
   <style>
@@ -38,11 +44,11 @@
     <section id="side_layout">
     <nav class="side_nav">
       <ul class="list">
-        <li><button id="category-all">Home</button></li>
-        <li><button id="category-food">Food</button></li>
-        <li><button id="category-products">Products</button></li>
-        <li><button id="category-movies-tv">Movies&TV</button></li>
-        <li><button id="category-books">Books</button></li>
+        <li><button class="button is-link is-inverted" id="category-all"><i class="fa-solid fa-house"></i></button></li>
+        <li><button class="button is-link is-inverted" id="category-food"><i class="fa-solid fa-utensils"></i></button></li>
+        <li><button class="button is-link is-inverted" id="category-products"><i class="fa-solid fa-cart-shopping"></i></button></li>
+        <li><button class="button is-link is-inverted" id="category-movies-tv"><i class="fa-solid fa-film"></i></button></li>
+        <li><button class="button is-link is-inverted" id="category-books"><i class="fa-solid fa-book"></i></button></li>
       </ul>
       <!-- <button id="category-products">Products</button>
   <button id="category-food">Food</button>
