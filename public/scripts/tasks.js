@@ -68,5 +68,6 @@ $(() => { //this is document ready
     .done((response) => {
       tasks = response.tasks;
       filterFunction();
+      loadTasks();
     });
 });

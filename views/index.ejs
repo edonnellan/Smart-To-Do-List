@@ -22,21 +22,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <!-- bulma stylesheet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
     integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <!-- moment -->
   <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/tasks.js"></script>
-  <script defer src="/scripts/dropdown.js"></script>
+  <script src="/scripts/dropdown.js"></script>
 
 </head>
 
 <body>
+  <!-------------- Nav Bar ---------------->
   <nav class="nav_bar">
     <button>Logout</button>
     <h2 class="current_page">Smart-To-Do-List</h2>
@@ -44,6 +44,7 @@
   </nav>
 
   <section id="main_content">
+    <!-------------- Side Bar ---------------->
     <nav class="side_nav">
       <ul class="list">
         <li><button class="button is-link is-inverted" id="category-all"><i class="fa-solid fa-house"></i></button></li>
@@ -55,8 +56,9 @@
     </nav>
 
     <div id="task_content">
+      <!-------------- New Task ---------------->
       <div class="new_task_dropdown">
-        <form>
+        <form action="/tasks" method="POST" id="new_task_form">
           <div class="inputs">
             <div class="input_item">
               <label for="task_name">Task Name:</label>
@@ -85,6 +87,7 @@
         </form>
       </div>
 
+      <!-------------- Exsisting Tasks ---------------->
       <section class="tasks_contianer">
         <div id="tasks"></div>
       </section>
@@ -96,10 +99,4 @@
   </footer>
 
 </body>
-
-
-
-
-
-
 </html>
