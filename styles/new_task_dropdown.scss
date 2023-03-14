@@ -1,0 +1,16 @@
+.new_task_dropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(170, 193, 255);
+  width: 60%;
+  margin: 8%;
+  padding: 5%
+
+
+}
+
+.task_drop_downs {
+  margin-top: 5%;
+  flex-direction: row;
+}

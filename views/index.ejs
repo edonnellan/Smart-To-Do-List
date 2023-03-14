@@ -4,52 +4,105 @@
 <head>
   <title>Home Page</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/side_bar.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/footer.css" />
+  <link rel="stylesheet" href="/styles/new_task_dropdown.css" />
+  <link rel="stylesheet" href="/styles/tasks_contianer.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/tasks.js"></script>
   <style>
-    table, tr, th, td {
+    table,
+    tr,
+    th,
+    td {
       border: 1px solid black;
       border-collapse: collapse;
     }
   </style>
+
 </head>
 
 <body>
-  <form method="POST" action="/api/tasks">
-    <input name="title" placeholder="title">
-    <input name="category" placeholder="category">
-    <input name="priority" placeholder="priority">
-    <input name="is_completed" placeholder="is_completed">
-    <input name="is_deleted" placeholder="is_deleted">
-    <input type="submit" id="submit">
-  </form>
-  <div>TASKS</div>
-  <table>
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Category</th>
-        <th>Completed</th>
-        <th>Priority</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody id="task-body">
+  <nav class="nav_bar">
+    <button>Logout</button>
+    <h2>Smart-To-Do-List</h2>
+    <button>New Task!</button>
+  </nav>
 
-    </tbody>
-  </table>
+  <section id="side_layout">
+    <nav class="side_nav">
+      <ul class="list">
+        <li><button id="category-all">Home</button></li>
+        <li><button id="category-food">Food</button></li>
+        <li><button id="category-products">Products</button></li>
+        <li><button id="category-movies-tv">Movies&TV</button></li>
+        <li><button id="category-books">Books</button></li>
+      </ul>
+      <!-- <button id="category-products">Products</button>
+  <button id="category-food">Food</button>
+  <button id="category-movies-tv">Movies/TV</button>
+  <button id="category-books">Books</button>
+  <button id="category-all">All</button> -->
+    </nav>
+
+    <div id="main_content">
+      <div class="new_task_dropdown">
+        <form>
+          <label for="task_name">Task Name:</label>
+          <input type="text" name="task_name" />
+        </form>
+        <br />
+
+        <div class="task_drop_downs">
+          <button>Category Drop-Down</button>
+          <button>Priority Drop-Down</button>
+        </div>
+      </div>
+
+      <div>TASKS</div>
+      <table id="tasks">
+
+      </table>
 
 
+      <section class="tasks_contianer">
+        <div class="task_box">Task One
+          <span class="task_info">
+            <p>category</p>
+            <p>date</p>
+            <p>priority</p>
+            <p>edit</p>
+          </span>
+        </div>
+        <div class="task_box">Task Two</div>
+        <div class="task_box">Task Three</div>
+        <div class="task_box">Task Four</div>
+        <div class="task_box">Task Five</div>
+
+
+
+      </section>
+
+    </div>
+  </section>
+  <footer class="navbar_footer">
+    <p>FOOTER</p>
+  </footer>
 </body>
+
+
+
+
+
 
 </html>
