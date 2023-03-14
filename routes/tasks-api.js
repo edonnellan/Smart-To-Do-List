@@ -2,6 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const taskQueries = require('../db/queries/tasks');
 
+
 router.get('/', (req, res) => {
   taskQueries.getTasks()
     .then(tasks => {
@@ -12,6 +13,10 @@ router.get('/', (req, res) => {
         .status(500)
         .json({ error: err.message });
     });
+});
+
+router.post('/', (req, res) => {
+  const item = req.body.input;
 });
 
 module.exports = router;

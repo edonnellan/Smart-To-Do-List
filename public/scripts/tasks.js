@@ -26,14 +26,7 @@ $(() => { //this is document ready
 
   const filterFunction = () => {
     $tasksList.empty();
-    $tasksList.append(`<tr>
-    <th>Id</th>
-    <th>Title</th>
-    <th>Categoty</th>
-    <th>Completed</th>
-    <th>Priority</th>
-    <th>Date</th>
-  </tr>`);
+
 
     const filtered = tasks.filter((task) => {
       if (category === 'all') {
@@ -42,14 +35,27 @@ $(() => { //this is document ready
       return task.category === category;
     });
     for (const task of filtered) {
+<<<<<<< HEAD
       if (task.is_completed !== true)
+=======
+      let priorityColor = "";
+      if (task.priority === 1) {
+        priorityColor = "🔴";
+      } else if (task.priority === 2) {
+        priorityColor = "🟡";
+      } else {
+        priorityColor = "🟢";
+      }
+>>>>>>> master
       ($tasksList).append(
-        `<tr class="task-row row-${task.id}"><td>${task.id}</td>
-      <td>${task.title}</td>
-      <td>${task.category}</td>
-      <td>${task.is_completed}</td>
-      <td>${task.priority}</td>
-      <td>${task.date}</td></tr>`
+        `<div class='tasks-list'>
+          <div class='task-title'>${task.title}</div>
+          <div class='task-category'>${task.category}</div>
+          <div class='task-date'>${moment(task.date).format("MMM Do YY")}</div>
+          <div class='task-date'>${moment(task.date).fromNow()}</div>
+          <div class='task-priority'>${priorityColor}</div>
+          <button class="task-edit">Edit</button>
+        </div>`
       );
     }
   };

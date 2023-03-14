@@ -3,20 +3,40 @@
   justify-content: center;
   flex-direction: column;
   width: 70%;
+  font-family: 'Montserrat', sans-serif;
 
+
+  .tasks-list {
+    border: 3px solid gray;
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 1rem;
+    padding: 3em 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s ease-in-out;
+
+    &:hover{
+      box-shadow: 2px 2px darkgray;
+    }
+
+    .task-title {
+      font-size: 28px;
+      font-weight: 600;
+      width: 35%;
+    }
+    .task-edit {
+      padding: 0.5em 1em ;
+      border-radius: 10px;
+      background-color: white;
+      transition: 0.3s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background-color: beige;
+      }
+    }
+  }
 }
 
-.task_box {
-  width: 100%;
-  padding: 5%;
-  margin: 5%;
-  background-color: aquamarine;
-  border-width: 1rem;
-  border-color: black;
-}
 
-.task_info {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-}
