@@ -31,15 +31,19 @@ const categoryFinder = function(taskTitle) {
     taskName.includes('food')
   ) {
     return 'food';
-  } else {
-    let result =categoryFinderApi(taskTitle);
-    console.log("result", result);
-    return result;
-  }
+  } 
+  // else {
+  //   return categoryFinderApi(taskTitle, (result) => {
+  //     console.log("result: ", result);
+      
+  //     return result;
+  //   })
+  // }
  };
 
- const categoryFinderApi = function(taskTitle) {
-  request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
+
+const categoryFinderApi = function(taskTitle, callback) {
+   request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
     const results = JSON.parse(body).items;
     // console.log(results);
     const data = [];
@@ -50,22 +54,43 @@ const categoryFinder = function(taskTitle) {
 
     for (let element of data) {
       console.log(element);
-      if (element.includes('novel')) {
-        console.log('book!');
-        const output = 'books';
-        return output;
-      }
+      if (element.includes('vegetable')) {
+        const output = 'product';
+        return callback(output);
+      } 
     }
+    callback(null);
   })
- };
+};
 
 const addTask = function(title, category, priority) {
 
   if (category == 'uncategorized') {
-  console.log("category:", category)
-    category = categoryFinder(title)
-    console.log("category:", category)
+    // console.log("category:", category);
+    category = categoryFinder(title);
+    // console.log("category:", category);
   };
+  if (category == undefined) {
+    return categoryFinderApi(title, (result) => {
+      console.log("result: ", result);
+      const taskValues = [
+        `${title}`,
+        `${result}`,
+        `${priority}`,
+      ];
+       return db
+        .query(`INSERT INTO tasks (title, category, priority)
+      VALUES ($1, $2, $3) RETURNING *;`, taskValues)
+        .then((result) => {
+          return result.rows[0];
+        })
+        .catch((err) => {
+          console.log('cannot add task', err);
+        });
+      return result;
+    })
+    console.log(category);
+  }
 
   const taskValues = [
     `${title}`,
