@@ -6,25 +6,27 @@ const axios = require("axios");
 const { response } = require('express');
 
 
-// const categoryFinder = function(taskTitle) {
-//   const taskName = taskTitle.toLowerCase();
-//   if (taskName.includes('buy' || 'groceries' || 'amazon' || 'order' || 'purchase')
-//   ) {
-//     return 'products';
-//   } else if (
-//     taskName.includes('watch' || 'stream' || 'movie' || 'film' || 'TV')
-//   ) {
-//     return 'movies_tv';
-//   } else if (
-//     taskName.includes('read' || 'book')
-//   ) {
-//     return 'books';
-//   } else if (
-//     taskName.includes('eat' || 'food')
-//   ) {
-//     return 'food';
-//   }
-// };
+const categoryFinder = function(taskTitle) {
+  const taskName = taskTitle.toLowerCase();
+  if (taskName.includes('buy' || 'groceries' || 'amazon' || 'order' || 'purchase')
+  ) {
+    return 'products';
+  } else if (
+    taskName.includes('watch' || 'stream' || 'movie' || 'film' || 'TV')
+  ) {
+    return 'movies_tv';
+  } else if (
+    taskName.includes('read' || 'book')
+  ) {
+    return 'books';
+  } else if (
+    taskName.includes('eat' || 'food')
+  ) {
+    return 'food';
+  } else {
+    return 'uncategorized';
+  }
+};
 
 
 const categoryFinderApi = function(taskTitle, callback) {
@@ -71,6 +73,10 @@ VALUES ($1, $2, $3) RETURNING *;`, arr)
 
 const addTask = function(res, title, category, priority) {
 
+  // if (category === "uncategorized") {
+  //   category = categoryFinder(title);
+  // }
+
   if (category == "uncategorized") {
     return categoryFinderApi(title, (result) => {
       console.log("result: ", result);
@@ -80,11 +86,11 @@ const addTask = function(res, title, category, priority) {
         `${priority}`,
       ];
       const output = dbQuery(taskValues)
-      .then(response => {
-        return res.send(response)
-      });
-      console.log("API output:", output)
-      return output
+        .then(response => {
+          return res.send(response);
+        });
+      console.log("API output:", output);
+      return output;
     });
   }
 
@@ -93,9 +99,9 @@ const addTask = function(res, title, category, priority) {
     `${category}`,
     `${priority}`,
   ];
- const output = dbQuery(values);
- console.log("addtask output:", output)
- return output
+  const output = dbQuery(values);
+  console.log("addtask output:", output);
+  return output;
 };
 
 router.post('/', (req, res) => {
@@ -105,7 +111,7 @@ router.post('/', (req, res) => {
     priority: req.body.task_priority
   };
 
-  const taskRes = addTask(res, newTask.title, newTask.category, newTask.priority)
+  const taskRes = addTask(res, newTask.title, newTask.category, newTask.priority);
 });
 
 module.exports = router;
