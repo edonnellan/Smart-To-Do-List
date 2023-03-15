@@ -7,7 +7,6 @@ $(() => { //this is document ready
   let category = 'all';
   $('#category-products').on('click', () => {
     category = 'products';
-    loadTasks();
     filterFunction();
   });
   $('#category-books').on('click', () => {

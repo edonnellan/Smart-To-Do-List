@@ -41,8 +41,8 @@ const categoryFinderApi = function(taskTitle, callback) {
     for (let element of data) {
       let output = '';
       console.log(element);
-      if (element.includes('vegetable') || element.includes('electronics') || element.includes('fruit') || element.includes('appliance') || element.includes('product')) {
-        output = 'product';
+      if (element.includes('vegetable') || element.includes('electronics') || element.includes('fruit') || element.includes('appliance') || element.includes('product') || element.includes('shop')) {
+        output = 'products';
         return callback(output);
       } else if (element.includes('stream') || element.includes('movie') || element.includes('television') || element.includes('sitcom') || element.includes('film') || element.includes('watch')) {
         output = 'movies_tv';
@@ -99,7 +99,10 @@ const addTask = function(res, title, category, priority) {
     `${category}`,
     `${priority}`,
   ];
-  const output = dbQuery(values);
+  const output = dbQuery(values)
+  .then(response => {
+    return res.send(response);
+  });
   console.log("addtask output:", output);
   return output;
 };
