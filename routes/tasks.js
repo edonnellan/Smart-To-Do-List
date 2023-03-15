@@ -7,93 +7,91 @@ const axios = require('axios');
 
 const categoryFinder = function(taskTitle) {
   const taskName = taskTitle.toLowerCase();
-  // if (taskName.includes('buy') ||
-  //   taskName.includes('groceries') ||
-  //   taskName.includes('amazon') ||
-  //   taskName.includes('order') ||
-  //   taskName.includes('purchase')
-  // ) {
-  //   return 'products';
-  // } else if (
-  //   taskName.includes('watch') ||
-  //   taskName.includes('stream') ||
-  //   taskName.includes('movie') ||
-  //   taskName.includes('film') ||
-  //   taskName.includes('TV')
-  // ) {
-  //   return 'movies_tv';
-  // } else if (
-  //   taskName.includes('read') ||
-  //   taskName.includes('book')
-  // ) {
-  //   return 'books';
-  // } else if (
-  //   taskName.includes('eat') ||
-  //   taskName.includes('food')
-  // ) {
-  //   return 'food';
-  // } else {
-  return categoryFinderApi(taskTitle)
-    .then(data => {
-      // console.log("result", data)
-      const apiResults = data;
-      if (data.includes('novel')) {
-        return 'books';
+  if (taskName.includes('buy') ||
+    taskName.includes('groceries') ||
+    taskName.includes('amazon') ||
+    taskName.includes('order') ||
+    taskName.includes('purchase')
+  ) {
+    return 'products';
+  } else if (
+    taskName.includes('watch') ||
+    taskName.includes('stream') ||
+    taskName.includes('movie') ||
+    taskName.includes('film') ||
+    taskName.includes('TV')
+  ) {
+    return 'movies_tv';
+  } else if (
+    taskName.includes('read') ||
+    taskName.includes('book')
+  ) {
+    return 'books';
+  } else if (
+    taskName.includes('eat') ||
+    taskName.includes('food')
+  ) {
+    return 'food';
+  }
+  // else {
+  //   return categoryFinderApi(taskTitle, (result) => {
+  //     console.log("result: ", result);
+
+  //     return result;
+  //   })
+  // }
+ };
+
+
+const categoryFinderApi = function(taskTitle, callback) {
+   request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
+    const results = JSON.parse(body).items;
+    // console.log(results);
+    const data = [];
+      for (const result of results) {
+        data.push(result.snippet);
       }
-        //   // console.log(results);
-        //   const data = [];
-        //   for (const result of results) {
-        //     data.push(result.snippet);
-        //   }
-        //   console.log(data);
+    console.log(data);
 
-        //   for (let element of data) {
-        //     console.log(element);
-        //     if (element.includes('novel')) {
-        //       console.log('book!');
-        //       const output = 'books';
-        //       return output;
-        //     }
-        //   }
-      });
-};
-// };
-
-const categoryFinderApi = function(taskTitle) {
-  const url = `https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`;
-  return axios.get(url)
-    .then(res => {
-      console.log("snippet", res.data.items[0].snippet)
-      return res.data.items[0].snippet;
-    });
-
-  // request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
-  //   const results = JSON.parse(body).items;
-  //   // console.log(results);
-  //   const data = [];
-  //   for (const result of results) {
-  //     data.push(result.snippet);
-  //   }
-  //   console.log(data);
-
-  //   for (let element of data) {
-  //     console.log(element);
-  //     if (element.includes('novel')) {
-  //       console.log('book!');
-  //       const output = 'books';
-  //       return output;
-  //     }
-  //   }
-  // });
+    for (let element of data) {
+      console.log(element);
+      if (element.includes('vegetable')) {
+        const output = 'product';
+        return callback(output);
+      }
+    }
+    callback(null);
+  })
 };
 
 const addTask = function(title, category, priority) {
 
   if (category == 'uncategorized') {
-    console.log("category:", category);
+    // console.log("category:", category);
     category = categoryFinder(title);
-    console.log("category:", category);
+    // console.log("category:", category);
   };
+  if (category == undefined) {
+    return categoryFinderApi(title, (result) => {
+      console.log("result: ", result);
+      const taskValues = [
+        `${title}`,
+        `${result}`,
+        `${priority}`,
+      ];
+       return db
+        .query(`INSERT INTO tasks (title, category, priority)
+      VALUES ($1, $2, $3) RETURNING *;`, taskValues)
+        .then((result) => {
+          return result.rows[0];
+        })
+        .catch((err) => {
+          console.log('cannot add task', err);
+        });
+      return result;
+    })
+    console.log(category);
+  }
 
   const taskValues = [
     `${title}`,
