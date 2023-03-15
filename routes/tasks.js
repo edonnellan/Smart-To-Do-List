@@ -73,9 +73,9 @@ VALUES ($1, $2, $3) RETURNING *;`, arr)
 
 const addTask = function(res, title, category, priority) {
 
-  // if (category === "uncategorized") {
-  //   category = categoryFinder(title);
-  // }
+  if (category === "uncategorized") {
+    category = categoryFinder(title);
+  }
 
   if (category == "uncategorized") {
     return categoryFinderApi(title, (result) => {
