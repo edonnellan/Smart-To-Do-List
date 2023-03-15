@@ -20,9 +20,5 @@ $(document).ready(function (){
         $('#task_priority').val('1');
       }
     })
-
-    $('input[name=task_name]').val('');
-    $('#task_category').val('uncategorized');
-    $('#task_priority').val('1');
   }))
 });

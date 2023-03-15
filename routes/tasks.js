@@ -1,76 +1,77 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const db = require('../db/connection');
 const request = require("request");
+const axios = require("axios");
+const { response } = require('express');
 
 
-const categoryFinder = function(taskTitle) {
-  const taskName = taskTitle.toLowerCase();
-  if (taskName.includes('buy') ||
-    taskName.includes('groceries') ||
-    taskName.includes('amazon') ||
-    taskName.includes('order') ||
-    taskName.includes('purchase')
-  ) {
-    return 'products';
-  } else if (
-    taskName.includes('watch') ||
-    taskName.includes('stream') ||
-    taskName.includes('movie') ||
-    taskName.includes('film') ||
-    taskName.includes('TV')
-  ) {
-    return 'movies_tv';
-  } else if (
-    taskName.includes('read') ||
-    taskName.includes('book')
-  ) {
-    return 'books';
-  } else if (
-    taskName.includes('eat') ||
-    taskName.includes('food')
-  ) {
-    return 'food';
-  }
-  // else {
-  //   return categoryFinderApi(taskTitle, (result) => {
-  //     console.log("result: ", result);
-
-  //     return result;
-  //   })
-  // }
- };
+// const categoryFinder = function(taskTitle) {
+//   const taskName = taskTitle.toLowerCase();
+//   if (taskName.includes('buy' || 'groceries' || 'amazon' || 'order' || 'purchase')
+//   ) {
+//     return 'products';
+//   } else if (
+//     taskName.includes('watch' || 'stream' || 'movie' || 'film' || 'TV')
+//   ) {
+//     return 'movies_tv';
+//   } else if (
+//     taskName.includes('read' || 'book')
+//   ) {
+//     return 'books';
+//   } else if (
+//     taskName.includes('eat' || 'food')
+//   ) {
+//     return 'food';
+//   }
+// };
 
 
 const categoryFinderApi = function(taskTitle, callback) {
-   request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
+  request(`https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`, (err, response, body) => {
     const results = JSON.parse(body).items;
-    // console.log(results);
     const data = [];
-      for (const result of results) {
-        data.push(result.snippet);
-      }
+    for (const result of results) {
+      data.push(result.snippet);
+    }
     console.log(data);
 
     for (let element of data) {
+      let output = '';
       console.log(element);
-      if (element.includes('vegetable')) {
-        const output = 'product';
+      if (element.includes('vegetable') || element.includes('electronics') || element.includes('fruit') || element.includes('appliance') || element.includes('product')) {
+        output = 'product';
+        return callback(output);
+      } else if (element.includes('stream') || element.includes('movie') || element.includes('television') || element.includes('sitcom') || element.includes('film') || element.includes('watch')) {
+        output = 'movies_tv';
+        return callback(output);
+      } else if (element.includes('read') || element.includes('book') || element.includes('novel') || element.includes('author')) {
+        output = 'books';
+        return callback(output);
+      } else if (element.includes('eat') || element.includes('restaurant') || element.includes('fast food')) {
+        output = 'food';
         return callback(output);
       }
     }
-    callback(null);
-  })
+    callback('uncategorized');
+  });
 };
 
-const addTask = function(title, category, priority) {
+const dbQuery = function(arr) {
+  return db
+    .query(`INSERT INTO tasks (title, category, priority)
+VALUES ($1, $2, $3) RETURNING *;`, arr)
+    .then((result) => {
+      return result.rows[0];
+    })
+    .catch((err) => {
+      console.log('cannot add task', err);
+    });
+};
 
-  if (category == 'uncategorized') {
-    // console.log("category:", category);
-    category = categoryFinder(title);
-    // console.log("category:", category);
-  };
-  if (category == undefined) {
+const addTask = function(res, title, category, priority) {
+
+  if (category == "uncategorized") {
     return categoryFinderApi(title, (result) => {
       console.log("result: ", result);
       const taskValues = [
@@ -78,46 +79,33 @@ const addTask = function(title, category, priority) {
         `${result}`,
         `${priority}`,
       ];
-       return db
-        .query(`INSERT INTO tasks (title, category, priority)
-      VALUES ($1, $2, $3) RETURNING *;`, taskValues)
-        .then((result) => {
-          return result.rows[0];
-        })
-        .catch((err) => {
-          console.log('cannot add task', err);
-        });
-      return result;
-    })
-    console.log(category);
+      const output = dbQuery(taskValues)
+      .then(response => {
+        return res.send(response)
+      });
+      console.log("API output:", output)
+      return output
+    });
   }
 
-  const taskValues = [
+  const values = [
     `${title}`,
     `${category}`,
     `${priority}`,
   ];
-   db
-    .query(`INSERT INTO tasks (title, category, priority)
-  VALUES ($1, $2, $3) RETURNING *;`, taskValues)
-    .then((result) => {
-      return result.rows[0];
-    })
-    .catch((err) => {
-      console.log('cannot add task', err);
-    });
- };
+ const output = dbQuery(values);
+ console.log("addtask output:", output)
+ return output
+};
 
 router.post('/', (req, res) => {
   const newTask = {
     title: req.body.task_name,
     category: req.body.task_category,
     priority: req.body.task_priority
-  }
-  res.json({ newTask });
+  };
 
-addTask(newTask.title, newTask.category, newTask.priority);
-
+  const taskRes = addTask(res, newTask.title, newTask.category, newTask.priority)
 });
 
 module.exports = router;

@@ -35,7 +35,7 @@ $(() => { //this is document ready
       }
       return task.category === category;
     });
-
+    console.log("filtered:", filtered)
     // tasks list
     for (const task of filtered) {
       let priorityColor = "";
