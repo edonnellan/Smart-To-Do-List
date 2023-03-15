@@ -1,0 +1,54 @@
+.edit-task {
+  border: 1px solid black;
+  width: 100%;
+  padding: 1em 2em;
+  margin: 2em 0;
+  font-family: 'Montserrat', sans-serif;
+  display: none;
+  .edit_task_form {
+    display: flex;
+    justify-content: space-between;
+
+    .inputs {
+      width: 100%;
+      .input_item {
+        width: 100%;
+        display: flex;
+        place-items: center;
+        margin: 0.5em 0;
+        label {
+          width: 30%;
+          font-weight: 400;
+        }
+        input, select {
+          height: 2em;
+          border-radius: 10px;
+          border: 1px solid lightgray;
+          padding-left: 0.3rem;
+          width: 60%;
+        }
+      }
+    }
+
+    .btns {
+      display: flex;
+      place-items: center;
+
+      button {
+        padding: 0.5em 1em ;
+        border: 2px solid rgba(85, 64, 38, 0.573);
+        border-radius: 10px;
+        background-color: white;
+        transition: 0.3s ease-in-out;
+        margin-left: 1em;
+
+        &:hover {
+          cursor: pointer;
+          background-color: beige;
+        }
+      }
+    }
+  }
+}
+
+
