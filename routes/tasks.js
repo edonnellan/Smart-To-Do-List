@@ -1,8 +1,7 @@
 const express = require('express');
-const router = express.Router();
+const router  = express.Router();
 const db = require('../db/connection');
 const request = require("request");
-const axios = require('axios');
 
 
 const categoryFinder = function(taskTitle) {
@@ -98,7 +97,7 @@ const addTask = function(title, category, priority) {
     `${category}`,
     `${priority}`,
   ];
-  db
+   db
     .query(`INSERT INTO tasks (title, category, priority)
   VALUES ($1, $2, $3) RETURNING *;`, taskValues)
     .then((result) => {
@@ -107,17 +106,17 @@ const addTask = function(title, category, priority) {
     .catch((err) => {
       console.log('cannot add task', err);
     });
-};
+ };
 
 router.post('/', (req, res) => {
   const newTask = {
     title: req.body.task_name,
     category: req.body.task_category,
     priority: req.body.task_priority
-  };
+  }
   res.json({ newTask });
 
-  addTask(newTask.title, newTask.category, newTask.priority);
+addTask(newTask.title, newTask.category, newTask.priority);
 
 });
 
