@@ -38,7 +38,7 @@ $(() => {
       if (category === "all" && task.is_completed === false && task.is_deleted === false) {
         return true;
       } else if (category === "completed") {
-        return (task.is_completed === true)
+        return (task.is_completed === true && task.is_deleted === false)
       }
       return (task.category === category && task.is_completed === false && task.is_deleted === false);
     });
@@ -66,7 +66,7 @@ $(() => {
           </div>
           <label for="my-checkbox" id="check-label">
           <form action="/tasks/${task.id}/complete" method="POST">
-           <button type="submit" formaction="/tasks/${task.id}/complete"id="my-checkbox" name="my-checkbox">complete</button>
+           <button type="submit" formaction="/tasks/${task.id}/complete"id="my-checkbox" name="my-checkbox">done</button>
           </form>
           </label>
         </div>
