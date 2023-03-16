@@ -12,7 +12,7 @@
     border-radius: 10px;
     background-color: white;
     margin-bottom: 1rem;
-    padding: 1em 2em;
+    padding: 1em 1.8em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,14 +26,19 @@
     .task-title {
       font-size: 22px;
       font-weight: 600;
-      width: 35%;
+      width: 38%;
     }
-    .task-category, .task-date {
-      width: 18%;
+    .task-category {
+      font-weight: 600;
+      width: 15%;
+      text-align: center;
+    }
+    .task-date {
+      width: 13%;
       text-align: center;
     }
     .task-priority{
-      width: 5%;
+      width: 4%;
       color: #eeb5a0;
     }
     .task-edit {
