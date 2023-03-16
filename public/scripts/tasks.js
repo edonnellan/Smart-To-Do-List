@@ -36,7 +36,7 @@ $(() => {
     $('.current_page').text('Smart-To-Do-List');
     filterFunction();
   });
-  $("#category-completed").on("click", (e) => {
+  $("#category-completed").on("click", () => {
     category = "completed";
     filterFunction();
     $('.tasks-list').css({'background-color': 'lightgray', 'border': 'gray'});
@@ -45,6 +45,7 @@ $(() => {
     $('.task-edit').css('border', '1.5px solid darkgray');
     $('.task-edit').attr('disabled','disabled');
     $('.current_page').html(`<i class="fa-solid fa-list-check"></i> Completed Tasks`);
+    category = "completed"
   });
 
 

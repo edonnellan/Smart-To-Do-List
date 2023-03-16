@@ -1,24 +1,24 @@
-INSERT INTO tasks (title, category, date) VALUES ('watch titanic', 'Movies/TV', '2023-03-05');
-INSERT INTO tasks (title, category, date) VALUES ('bananas', 'Shopping', '2023-03-08');
+INSERT INTO tasks (title, category, date) VALUES ('Watch Titanic', 'Movies/TV', '2023-03-05');
+INSERT INTO tasks (title, category, date) VALUES ('Buy Bananas', 'Shopping', '2023-03-08');
 INSERT INTO tasks (title, category, date) VALUES ('Untamed', 'Books', '2023-03-10');
-INSERT INTO tasks (title, category, date) VALUES ('Wendys', 'Restaurants', '2023-03-11');
-INSERT INTO tasks (title, category, date) VALUES ('The Last of Us', 'Movies/TV', '2023-03-15');
+INSERT INTO tasks (title, category, date) VALUES ('Order Wendys', 'Restaurants', '2023-03-11');
+INSERT INTO tasks (title, category, date, is_important) VALUES ('The Last of Us', 'Movies/TV', '2023-03-15', true);
 
 -- is_completed tasks below --
 
-INSERT INTO tasks (title, category, is_completed) VALUES ('how to code', 'Books', true);
+INSERT INTO tasks (title, category, is_completed) VALUES ('How to Code', 'Books', true);
 INSERT INTO tasks (title, category, is_completed) VALUES ('Game of Thrones', 'Movies/TV', true);
-INSERT INTO tasks (title, category, is_completed) VALUES ('grocery shopping', 'Shopping', true);
+INSERT INTO tasks (title, category, is_completed) VALUES ('Grocery Shopping', 'Shopping', true);
 
 -- is_deleted true --
 
-INSERT INTO tasks (title, category, is_deleted) VALUES ('harry potter', 'Books', true);
-INSERT INTO tasks (title, category, is_deleted) VALUES ('silicon valley', 'Movies/TV', true);
-INSERT INTO tasks (title, category, is_deleted) VALUES ('macbook', 'Shopping', true);
+INSERT INTO tasks (title, category, is_deleted) VALUES ('Harry Potter', 'Books', true);
+INSERT INTO tasks (title, category, is_deleted) VALUES ('Silicon Valley', 'Movies/TV', true);
+INSERT INTO tasks (title, category, is_deleted) VALUES ('Socks', 'Shopping', true);
 
 -- is_deleted true --
 
 INSERT INTO tasks (title, category, is_important) VALUES ('Starbucks', 'Restaurants', true);
-INSERT INTO tasks (title, category, is_important) VALUES ('Moby Dick', 'Books', true);
-INSERT INTO tasks (title, category, is_important) VALUES ('iPhone', 'Shopping', true);
+INSERT INTO tasks (title, category, is_important) VALUES ('Infinite Jest', 'Books', true);
+INSERT INTO tasks (title, category, is_important) VALUES ('Moms Bday Present', 'Shopping', true);
 
