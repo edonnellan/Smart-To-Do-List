@@ -1,7 +1,14 @@
 footer {
   display: flex;
-  justify-content: center;
-  background-color: rgb(42, 212, 255);
+  background-color: gray;
   width: 100%;
-  padding: 5%;
+  margin: auto;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4em 0;
+  bottom:0;
+
+  div {
+    text-align: center;
+  }
 }

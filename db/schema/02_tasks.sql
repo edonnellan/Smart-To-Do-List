@@ -4,9 +4,8 @@ CREATE TABLE tasks (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   title VARCHAR(255),
   category VARCHAR(255) DEFAULT 'uncategorized',
-  note VARCHAR(255) DEFAULT NULL,
   is_completed BOOLEAN DEFAULT FALSE,
   is_deleted BOOLEAN DEFAULT FALSE,
-  priority INTEGER DEFAULT 1,
+  is_important BOOLEAN DEFAULT FALSE,
   date TIMESTAMP DEFAULT NOW()
 );
