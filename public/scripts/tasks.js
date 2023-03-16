@@ -9,32 +9,44 @@ $(() => {
   $("#category-Shopping").on("click", () => {
     category = "Shopping";
     $("html,body").scrollTop(0);
+    $('.current_page').html(`<i class="fa-solid fa-cart-shopping"></i> Shopping`);
     filterFunction();
   });
   $("#category-Books").on("click", () => {
     category = "Books";
     $("html,body").scrollTop(0);
+    $('.current_page').html(`<i class="fa-solid fa-book"></i> Books`);
     filterFunction();
   });
   $("#category-Restaurants").on("click", () => {
     category = "Restaurants";
     $("html,body").scrollTop(0);
+    $('.current_page').html(`<i class="fa-solid fa-utensils"></i> Restaurants`);
     filterFunction();
   });
   $("#category-Movies-TV").on("click", () => {
     category = "Movies/TV";
     $("html,body").scrollTop(0);
+    $('.current_page').html(`<i class="fa-solid fa-film"></i> Movies/TV`);
     filterFunction();
   });
   $("#category-all").on("click", () => {
     category = "all";
     $("html,body").scrollTop(0);
+    $('.current_page').text('Smart-To-Do-List');
     filterFunction();
   });
-  $("#category-completed").on("click", () => {
+  $("#category-completed").on("click", (e) => {
     category = "completed";
     filterFunction();
+    $('.tasks-list').css({'background-color': 'lightgray', 'border': 'gray'});
+    $('.task-complete').css('display', 'none');
+    $('.task-uncomplete').css('display', 'block');
+    $('.task-edit').css('border', '1.5px solid darkgray');
+    $('.task-edit').attr('disabled','disabled');
+    $('.current_page').html(`<i class="fa-solid fa-list-check"></i> Completed Tasks`);
   });
+
 
   const filterFunction = () => {
     // category filter
@@ -70,11 +82,14 @@ $(() => {
           <div class='task-date'>${moment(task.date).fromNow()}</div>
           <div class='task-priority'>${important}</div>
           <button class="task-edit">Edit</button>
-          <form action="/tasks/${task.id}/complete" method="POST">
-           <button type="submit" formaction="/tasks/${
-             task.id
-           }/complete" class="my-checkbox" name="my-checkbox">
+          <form action="/tasks/${task.id}/complete" method="POST" class='task-complete'>
+           <button type="submit" formaction="/tasks/${task.id}/complete" class="my-checkbox" name="my-checkbox">
            <i class="fa-solid fa-check"></i>
+           </button>
+          </form>
+          <form action="/tasks/${task.id}/uncomplete" method="POST" class='task-uncomplete'>
+           <button type="submit" formaction="/tasks/${task.id}/uncomplete" class="my-checkbox" name="my-checkbox">
+           <i class="fa-solid fa-arrow-rotate-left"></i>
            </button>
           </form>
           </div>
@@ -85,7 +100,7 @@ $(() => {
             <div class="inputs">
               <div class="input_item">
                 <label for="task_name">Task Name:</label>
-                <input type="text" name="task_name" value="${task.title}">
+                <input type="text" name="task_name" value="${task.title}" required>
               </div>
               <div class="input_item">
                 <label for="task_category">Task Category:</label>
@@ -146,4 +161,5 @@ $(() => {
     });
   };
   loadTasks();
+
 });
