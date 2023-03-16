@@ -4,15 +4,28 @@ const db = require("../db/connection");
 const request = require("request");
 const { response } = require('express');
 
-const categoryFinder = function (taskTitle) {
+const categoryFinder = function(taskTitle) {
   const taskName = taskTitle.toLowerCase();
-  if (taskName.includes("buy" || "groceries" || "amazon" || "order" || "purchase")) {
+  if (taskName.includes("buy") ||
+  taskName.includes("groceries") ||
+  taskName.includes("amazon") ||
+  taskName.includes("purchase")
+  ){
     return "Shopping";
-  } else if (taskName.includes("watch" || "stream" || "movie" || "film" || "TV")) {
+  } else if (taskName.includes("watch") ||
+  taskName.includes("stream") ||
+  taskName.includes("movie") ||
+  taskName.includes("film") ||
+  taskName.includes("TV")
+  ){
     return "Movies/TV";
-  } else if (taskName.includes("read" || "book")) {
+  } else if (taskName.includes("read") ||
+  taskName.includes("book")
+  ){
     return "Books";
-  } else if (taskName.includes("eat" || "food")) {
+  } else if (taskName.includes("eat") ||
+  taskName.includes("food")
+  ){
     return "Restaurants";
   } else {
     return "Uncategorized";

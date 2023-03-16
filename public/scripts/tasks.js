@@ -45,9 +45,14 @@ $(() => {
     $('.task-edit').css('border', '1.5px solid darkgray');
     $('.task-edit').attr('disabled','disabled');
     $('.current_page').html(`<i class="fa-solid fa-list-check"></i> Completed Tasks`);
-    category = "completed"
   });
 
+  $(".task-uncomplete").on("submit", (event) => {
+    // category = "completed"
+    event.stopPropagation()
+    console.log("string", $(this));
+    // filterFunction();
+  })
 
   const filterFunction = () => {
     // category filter
@@ -87,13 +92,13 @@ $(() => {
            <button type="submit" formaction="/tasks/${task.id}/complete" class="my-checkbox" name="my-checkbox">
            <i class="fa-solid fa-check"></i>
            </button>
-          </form>
-          <form action="/tasks/${task.id}/uncomplete" method="POST" class='task-uncomplete'>
+           </form>
+           <form action="/tasks/${task.id}/uncomplete" method="POST" class='task-uncomplete'>
            <button type="submit" formaction="/tasks/${task.id}/uncomplete" class="my-checkbox" name="my-checkbox">
-           <i class="fa-solid fa-arrow-rotate-left"></i>
+           <i class="fa-solid fa-arrow-rotate-left" id="fa-arrow-rotate-left"></i>
            </button>
-          </form>
-          </div>
+           </form>
+         </div>
 
         <div class="edit-task">
           <form action="/tasks/${task.id}" method="POST" class="edit_task_form">

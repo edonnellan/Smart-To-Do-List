@@ -6,13 +6,16 @@
   width: 60%;
   font-family: 'Montserrat', sans-serif;
 
+  // .task-elements {
+
+  // }
 
   .tasks-list {
     border: 3px solid #B39CD0;
     border-radius: 10px;
     background-color: white;
     margin-bottom: 1rem;
-    padding: 1em 1.8em;
+    padding: 1em 1.5em;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,14 +37,18 @@
       text-align: center;
     }
     .task-date {
-      width: 13%;
+      width: 17%;
       text-align: center;
+      font-size: small
     }
     .task-priority{
+      text-align: center;
       width: 4%;
       color: #eeb5a0;
+      padding: 8px;
     }
     .task-edit {
+      margin-left: 8px;
       padding: 0.3em 0.8em ;
       border: 1.5px solid #B39CD0;
       border-radius: 10px;
