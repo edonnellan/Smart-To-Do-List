@@ -1,8 +1,9 @@
 .edit-task {
-  border: 1px solid black;
-  width: 100%;
+  border: 1px solid #B39CD0;
+  border-radius: 10px;
+  width: 90%;
   padding: 1em 2em;
-  margin: 2em 0;
+  margin: 1em 0 2em 0;
   font-family: 'Montserrat', sans-serif;
   display: none;
   .edit_task_form {
@@ -16,6 +17,7 @@
         display: flex;
         place-items: center;
         margin: 0.5em 0;
+        height: 2.5em;
         label {
           width: 30%;
           font-weight: 400;
@@ -23,11 +25,91 @@
         input, select {
           height: 2em;
           border-radius: 10px;
-          border: 1px solid lightgray;
+          border: 1px solid #B39CD0;
           padding-left: 0.3rem;
           width: 60%;
+
+          &:focus{
+            outline: none;
+          }
         }
       }
+
+    }
+
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Hide the browser's default radio button */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+      border-radius: 50%;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+      background-color: #ccc;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      background-color: #B39CD0;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .container .checkmark:after {
+      top: 9px;
+      left: 9px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .container {
+      font-size: 1em;
+      margin-top: 0.8em;
+      text-align: left;
+    }
+    label.radio-yes {
+      margin-left: 3em;
+    }
+    label.radio-no {
+      margin-left: -4em;
     }
 
     .btns {
@@ -36,15 +118,16 @@
 
       button {
         padding: 0.5em 1em ;
-        border: 2px solid rgba(85, 64, 38, 0.573);
+        border: 1px solid #B39CD0;
         border-radius: 10px;
         background-color: white;
         transition: 0.3s ease-in-out;
-        margin-left: 1em;
+        margin-left: 0.5em;
 
         &:hover {
           cursor: pointer;
-          background-color: beige;
+          background-color: #B39CD0;
+          color: #FCF7FF;
         }
       }
     }
