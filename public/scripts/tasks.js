@@ -26,15 +26,21 @@ $(() => {
     category = "all";
     filterFunction();
   });
+  $("#category-completed").on("click", () => {
+    category = "completed";
+    filterFunction();
+  });
 
   const filterFunction = () => {
     // category filter
     $tasksList.empty();
     const filtered = tasks.filter((task) => {
-      if (category === "all") {
+      if (category === "all" && task.is_completed === false && task.is_deleted === false) {
         return true;
+      } else if (category === "completed") {
+        return (task.is_completed === true)
       }
-      return task.category === category;
+      return (task.category === category && task.is_completed === false && task.is_deleted === false);
     });
     console.log("filtered:", filtered)
     // tasks list
@@ -59,7 +65,9 @@ $(() => {
             <button class="task-edit">Edit</button>
           </div>
           <label for="my-checkbox" id="check-label">
-          <input type="checkbox" id="my-checkbox" name="my-checkbox">
+          <form action="/tasks/${task.id}/complete" method="POST">
+           <button type="submit" formaction="/tasks/${task.id}/complete"id="my-checkbox" name="my-checkbox">complete</button>
+          </form>
           </label>
         </div>
 

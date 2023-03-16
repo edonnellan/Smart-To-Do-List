@@ -22,10 +22,12 @@ const categoryFinder = function (taskTitle) {
 const categoryFinderApi = function (taskTitle, callback) {
   request(
     `https://customsearch.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.GOOGLE_ENGINE_ID}&q=${taskTitle}`,
+    // `https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`,
     (err, response, body) => {
-      const results = JSON.parse(body).items;
+      let results = JSON.parse(body).items;
+      console.log("results:", results)
       const data = [];
-      for (const result of results) {
+      for (let result of results) {
         data.push(result.snippet);
       }
       console.log(data);
@@ -157,13 +159,27 @@ router.post("/:id", (req, res) => {
 
 // delete
 router.post("/:id/delete", (req, res) => {
-  res.redirect("/");
   db.query(
-    `DELETE FROM tasks WHERE id=$1;`,
-    [`${req.body.task_id}`],
+    `UPDATE tasks SET is_deleted = true WHERE id=$1;`,
+    [`${req.params.id}`],
     (err, result) => {
+      res.redirect("/");
       if (err) {
         console.log("cannot delete task", err);
+      }
+    }
+  );
+});
+
+router.post("/:id/complete", (req, res) => {
+  console.log("complete route firing")
+  db.query(
+    `UPDATE tasks SET is_completed = true WHERE id=$1;`,
+    [`${req.params.id}`],
+    (err, result) => {
+      res.redirect("/");
+      if (err) {
+        console.log("cannot complete task", err);
       }
     }
   );
