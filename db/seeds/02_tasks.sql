@@ -1,8 +1,8 @@
-INSERT INTO tasks (title, category) VALUES ('watch titanic', 'Movies/TV');
-INSERT INTO tasks (title, category) VALUES ('bananas', 'Shopping');
-INSERT INTO tasks (title, category) VALUES ('Untamed', 'Books');
-INSERT INTO tasks (title, category) VALUES ('Wendys', 'Restaurants');
-INSERT INTO tasks (title, category) VALUES ('The Last of Us', 'Movies/TV');
+INSERT INTO tasks (title, category, date) VALUES ('watch titanic', 'Movies/TV', '2023-03-05');
+INSERT INTO tasks (title, category, date) VALUES ('bananas', 'Shopping', '2023-03-08');
+INSERT INTO tasks (title, category, date) VALUES ('Untamed', 'Books', '2023-03-10');
+INSERT INTO tasks (title, category, date) VALUES ('Wendys', 'Restaurants', '2023-03-11');
+INSERT INTO tasks (title, category, date) VALUES ('The Last of Us', 'Movies/TV', '2023-03-15');
 
 -- is_completed tasks below --
 
