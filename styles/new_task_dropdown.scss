@@ -2,10 +2,11 @@
   border: 1px solid #B39CD0;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-bottom: 2rem;
   padding: 2rem;
-  width: 50%;
+  width: 60%;
   font-size: larger;
   display: none;
 
@@ -119,7 +120,7 @@
       justify-content: center;
       place-items: center;
       font-size: 1em;
-      
+
     }
   }
 }
