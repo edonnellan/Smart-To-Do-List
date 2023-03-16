@@ -18,7 +18,8 @@
   <link rel="stylesheet" href="/styles/edit_task_form.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+
   <!-- Font Awesome Library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -38,22 +39,24 @@
 <body>
   <!-------------- Nav Bar ---------------->
   <nav class="nav_bar">
-    <button>Logout</button>
-    <h2 class="current_page">Smart-To-Do-List</h2>
-    <button id="new-task">New Task!</button>
+    <a href="#" class="logout"><i class="fa-solid fa-user"></i>Logout</a>
+    <a href="/" class="current_page">Smart-To-Do-List</a>
+    <div class="new-task-btn">
+      <button id="new-task">New Task!</button>
+      <i class="fa-solid fa-caret-down"></i>
+    </div>
+
   </nav>
 
   <section id="main_content">
     <!-------------- Side Bar ---------------->
     <nav class="side_nav">
-      <ul class="list">
-        <li><button class="button is-link is-inverted" id="category-all"><i class="fa-solid fa-house"></i></button></li>
-        <li><button class="button is-link is-inverted" id="category-food"><i class="fa-solid fa-utensils"></i></button></li>
-        <li><button class="button is-link is-inverted" id="category-products"><i class="fa-solid fa-cart-shopping"></i></button></li>
-        <li><button class="button is-link is-inverted" id="category-movies-tv"><i class="fa-solid fa-film"></i></button></li>
-        <li><button class="button is-link is-inverted" id="category-books"><i class="fa-solid fa-book"></i></button></li>
-        <li><button class="button is-link is-inverted" id="category-completed"><i class="fa-solid fa-list-check"></i></button></li>
-      </ul>
+      <button class="button is-link is-inverted" id="category-all"><i class="fa-solid fa-house"></i></button>
+      <button class="button is-link is-inverted" id="category-food"><i class="fa-solid fa-utensils"></i></button>
+      <button class="button is-link is-inverted" id="category-products"><i class="fa-solid fa-cart-shopping"></i></button>
+      <button class="button is-link is-inverted" id="category-movies-tv"><i class="fa-solid fa-film"></i></button>
+      <button class="button is-link is-inverted" id="category-books"><i class="fa-solid fa-book"></i></button>
+      <button class="button is-link is-inverted" id="category-completed"><i class="fa-solid fa-list-check"></i></button>
     </nav>
 
     <div id="task_content">
@@ -76,12 +79,15 @@
               </select>
             </div>
             <div class="input_item">
-              <label for="task_priority">Task Priority:</label>
-              <select name="task_priority" id="task_priority">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
+              <label for="task_priority">Priority:</label>
+                <label class="container">Yes
+                  <input type="radio" name="task_priority" value="true">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="container radio-no">No
+                  <input type="radio" checked="checked" name="task_priority" value="false">
+                  <span class="checkmark"></span>
+                </label>
             </div>
           </div>
           <input type="submit">
@@ -97,7 +103,7 @@
   </section>
 
   <footer class="navbar_footer">
-    <p>FOOTER</p>
+    <div>© Rowan Mackenzie / Sooyeon Cheon </div>
   </footer>
 
 </body>

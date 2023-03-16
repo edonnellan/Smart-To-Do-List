@@ -5,12 +5,9 @@
   width: 60%;
   font-family: 'Montserrat', sans-serif;
 
-  .task-chkbox {
-    display: flex;
-    justify-content: space-between;
-  }
+
   .tasks-list {
-    border: 3px solid rgba(255, 196, 118, 0.573);
+    border: 3px solid #B39CD0;
     border-radius: 10px;
     background-color: white;
     margin-bottom: 1rem;
@@ -20,53 +17,47 @@
     justify-content: space-between;
     width: 90%;
     font-size: 0.95em;
+    transition: 0.3s ease-in-out;
+    &:hover{
+      background-color: #FBEAFF;
+    }
 
     .task-title {
       font-size: 24px;
       font-weight: 600;
       width: 35%;
     }
+    .task-category, .task-date {
+      width: 13%;
+      text-align: center;
+    }
+    .task-priority{
+      width: 5%;
+    }
     .task-edit {
-      padding: 0.5em 1em ;
-      border: 2px solid rgba(85, 64, 38, 0.573);
+      padding: 0.3em 0.8em ;
+      border: 1.5px solid #B39CD0;
       border-radius: 10px;
-      background-color: white;
+      background-color: transparent;
       transition: 0.3s ease-in-out;
       &:hover {
         cursor: pointer;
-        background-color: beige;
+        background-color: #503975;
+        color: #FCF7FF;
       }
     }
   }
+  .my-checkbox {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    transition: 0.3s ease-in-out;
+    color: #B39CD0;
 
-  #check-label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translate(-20px,-8px);
-    // input[type=checkbox] {
-    //   transform: scale(3);
-    //   margin-right: 1rem;
-    //   }
-    input[type='checkbox']{
-      width: 20px !important;
-      height: 20px !important;
-      margin: 5px;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      -o-appearance: none;
-      appearance: none;
-      outline: none;
-      box-shadow: none;
-      font-size: 1.2em;
-      text-align: center;
-      line-height: 1em;
-      background: rgba(255, 196, 118, 0.573);
-    }
-
-    input[type='checkbox']:checked:after {
-      content: '✔';
-      color: rgb(132, 97, 66);
+    &:hover{
+      cursor: pointer;
+      color: #503975;
+      text-shadow: 1px 1px 2px #B39CD0;
     }
   }
 

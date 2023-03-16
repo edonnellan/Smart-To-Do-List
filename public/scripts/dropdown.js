@@ -1,7 +1,7 @@
 
 $(document).ready(function (){
   // new task dropdown
-  $('#new-task').click(function(){
+  $('.new-task-btn').click(function(){
     $('.new_task_dropdown').slideToggle();
   });
 
@@ -25,7 +25,7 @@ $(document).ready(function (){
   // edit task form
   $(document).on('click', '.task-edit', function() {
     console.log("btn clicked");
-    $(this).closest('.task-chkbox').next('.edit-task').slideToggle();
+    $(this).closest('.tasks-list').next('.edit-task').slideToggle();
   });
 
 

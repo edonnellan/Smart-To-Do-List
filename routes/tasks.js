@@ -79,7 +79,7 @@ const categoryFinderApi = function (taskTitle, callback) {
 
 const dbQuery = function(arr) {
   return db
-    .query(`INSERT INTO tasks (title, category, priority)
+    .query(`INSERT INTO tasks (title, category, is_important)
 VALUES ($1, $2, $3) RETURNING *;`, arr)
     .then((result) => {
       return result.rows[0];
@@ -97,12 +97,12 @@ const addTask = function(res, title, category, priority) {
 
   if (category == "uncategorized") {
     return categoryFinderApi(title, (result) => {
-      console.log("result: ", result);
       const taskValues = [
         `${title}`,
         `${result}`,
         `${priority}`,
       ];
+      console.log('taskValues;' , taskValues);
       const output = dbQuery(taskValues)
         .then(response => {
           return res.send(response);
@@ -125,27 +125,38 @@ const addTask = function(res, title, category, priority) {
   return output;
 };
 
+// add new task
 router.post('/', (req, res) => {
+  let priority = false;
+  if (req.body.task_priority === "true") {
+    priority = true;
+  }
+  console.log('priority: ', priority);
   const newTask = {
     title: req.body.task_name,
     category: req.body.task_category,
-    priority: req.body.task_priority
+    priority: priority
   };
   const taskRes = addTask(res, newTask.title, newTask.category, newTask.priority);
+
 });
 
 // edit
 router.post("/:id", (req, res) => {
   res.redirect("/");
+  let priority = false;
+  if (req.body.task_priority === "true") {
+    priority = true;
+  }
   const taskValues = [
     `${req.body.task_name}`,
     `${req.body.task_category}`,
-    `${req.body.task_priority}`,
+    `${priority}`,
     `${req.body.task_id}`,
   ];
   db.query(
     `UPDATE tasks
-      SET title=$1 , category=$2 , priority=$3, date=NOW()
+      SET title=$1 , category=$2 , is_important=$3, date=NOW()
       WHERE id=$4;
     `,
     taskValues,
@@ -171,6 +182,7 @@ router.post("/:id/delete", (req, res) => {
   );
 });
 
+// complete
 router.post("/:id/complete", (req, res) => {
   console.log("complete route firing")
   db.query(
