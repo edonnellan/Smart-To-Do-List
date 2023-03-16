@@ -60,7 +60,7 @@ $(() => {
     for (const task of filtered) {
       let important = "";
       if (task.is_important) {
-        important = "⭐";
+        important = `<i class="fa-solid fa-star"></i>`;
       }
       $tasksList.append(
         `<div class='tasks-list'>
