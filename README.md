@@ -7,6 +7,14 @@ The solution? A smart, auto-categorizing todo list app. The user simply has to a
 
 ## Final Product
 
+!["gif"](https://github.com/edonnellan/Smart-To-Do-List/blob/0823fd5bd5fc586a78fabfbb88ca15267dfd1a2d/docs/todolist.gif)
+
+!["home"](https://github.com/edonnellan/Smart-To-Do-List/blob/0823fd5bd5fc586a78fabfbb88ca15267dfd1a2d/docs/01-home.jpg)
+
+!["edit"](https://github.com/edonnellan/Smart-To-Do-List/blob/0823fd5bd5fc586a78fabfbb88ca15267dfd1a2d/docs/02-edit.jpg)
+
+!["completed"](https://github.com/edonnellan/Smart-To-Do-List/blob/0823fd5bd5fc586a78fabfbb88ca15267dfd1a2d/docs/03-completed.jpg)
+
 
 ## Getting Started
 
