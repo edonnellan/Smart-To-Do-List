@@ -7,15 +7,15 @@ const { response } = require('express');
 const categoryFinder = function (taskTitle) {
   const taskName = taskTitle.toLowerCase();
   if (taskName.includes("buy" || "groceries" || "amazon" || "order" || "purchase")) {
-    return "products";
+    return "Shopping";
   } else if (taskName.includes("watch" || "stream" || "movie" || "film" || "TV")) {
-    return "movies_tv";
+    return "Movies/TV";
   } else if (taskName.includes("read" || "book")) {
-    return "books";
+    return "Books";
   } else if (taskName.includes("eat" || "food")) {
-    return "food";
+    return "Restaurants";
   } else {
-    return "uncategorized";
+    return "Uncategorized";
   }
 };
 
@@ -43,7 +43,7 @@ const categoryFinderApi = function (taskTitle, callback) {
           element.includes("product") ||
           element.includes("shop")
         ) {
-          output = "products";
+          output = "Shopping";
           return callback(output);
         } else if (
           element.includes("stream") ||
@@ -53,7 +53,7 @@ const categoryFinderApi = function (taskTitle, callback) {
           element.includes("film") ||
           element.includes("watch")
         ) {
-          output = "movies_tv";
+          output = "Movies/TV";
           return callback(output);
         } else if (
           element.includes("read") ||
@@ -61,18 +61,18 @@ const categoryFinderApi = function (taskTitle, callback) {
           element.includes("novel") ||
           element.includes("author")
         ) {
-          output = "books";
+          output = "Books";
           return callback(output);
         } else if (
           element.includes("eat") ||
           element.includes("restaurant") ||
           element.includes("fast food")
         ) {
-          output = "food";
+          output = "Restaurants";
           return callback(output);
         }
       }
-      callback('uncategorized');
+      callback('Uncategorized');
     }
   );
 };
@@ -91,11 +91,11 @@ VALUES ($1, $2, $3) RETURNING *;`, arr)
 
 const addTask = function(res, title, category, priority) {
 
-  if (category === "uncategorized") {
+  if (category === "Uncategorized") {
     category = categoryFinder(title);
   }
 
-  if (category == "uncategorized") {
+  if (category == "Uncategorized") {
     return categoryFinderApi(title, (result) => {
       const taskValues = [
         `${title}`,

@@ -16,7 +16,7 @@ $(document).ready(function (){
         console.log(response.newTask);
         loadTasks();
         $('input[name=task_name]').val('');
-        $('#task_category').val('uncategorized');
+        $('#task_category').val('Uncategorized');
         $('#task_priority').val('1');
       }
     })

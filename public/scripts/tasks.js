@@ -6,33 +6,29 @@ $(() => {
   let tasks = [];
   const $tasksList = $("#tasks");
   let category = "all";
-  $("#category-products").on("click", () => {
-    category = "products";
+  $("#category-Shopping").on("click", () => {
+    category = "Shopping";
     $("html,body").scrollTop(0);
     filterFunction();
   });
-  $("#category-books").on("click", () => {
-    category = "books";
+  $("#category-Books").on("click", () => {
+    category = "Books";
     $("html,body").scrollTop(0);
     filterFunction();
   });
-  $("#category-food").on("click", () => {
-    category = "food";
+  $("#category-Restaurants").on("click", () => {
+    category = "Restaurants";
     $("html,body").scrollTop(0);
     filterFunction();
   });
-  $("#category-movies-tv").on("click", () => {
-    category = "movies_tv";
+  $("#category-Movies-TV").on("click", () => {
+    category = "Movies/TV";
     $("html,body").scrollTop(0);
     filterFunction();
   });
   $("#category-all").on("click", () => {
     category = "all";
     $("html,body").scrollTop(0);
-    filterFunction();
-  });
-  $("#category-completed").on("click", () => {
-    category = "completed";
     filterFunction();
   });
   $("#category-completed").on("click", () => {
@@ -94,32 +90,32 @@ $(() => {
               <div class="input_item">
                 <label for="task_category">Task Category:</label>
                 <select name="task_category">
-                  <option value="uncategorized" ${
-                    task.category === "uncategorized" ? "selected" : ""
-                  }>uncategorized</option>
-                  <option value="food" ${
-                    task.category === "food" ? "selected" : ""
-                  }>food</option>
-                  <option value="products" ${
-                    task.category === "products" ? "selected" : ""
-                  }>products</option>
-                  <option value="movies_tv" ${
-                    task.category === "movies_tv" ? "selected" : ""
-                  }>movies_tv</option>
-                  <option value="books" ${
-                    task.category === "books" ? "selected" : ""
-                  }>books</option>
+                  <option value="Uncategorized" ${
+                    task.category === "Uncategorized" ? "selected" : ""
+                  }>Uncategorized</option>
+                  <option value="Restaurants" ${
+                    task.category === "Restaurants" ? "selected" : ""
+                  }>Restaurants</option>
+                  <option value="Shopping" ${
+                    task.category === "Shopping" ? "selected" : ""
+                  }>Shopping</option>
+                  <option value="Movies/TV" ${
+                    task.category === "Movies/TV" ? "selected" : ""
+                  }>Movies/TV</option>
+                  <option value="Books" ${
+                    task.category === "Books" ? "selected" : ""
+                  }>Books</option>
                 </select>
               </div>
               <div class="input_item radio-btns">
                 <label for="task_priority">Priority:</label>
-                  <label class="container radio-yes">Yes
+                  <label class="container radio-yes">High
                   <input type="radio" name="task_priority"
                   ${task.is_important ? "checked" : ""}
                   value="true">
                   <span class="checkmark"></span>
                   </label>
-                  <label class="container radio-no">No
+                  <label class="container radio-no">None
                   <input type="radio" name="task_priority"
                   ${task.is_important ? "" : "checked"}
                    value="false">
