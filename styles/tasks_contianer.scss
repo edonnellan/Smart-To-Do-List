@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
   width: 60%;
   font-family: 'Montserrat', sans-serif;
 
@@ -15,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 90%;
+    width: 800px;
     font-size: 0.95em;
     transition: 0.3s ease-in-out;
     &:hover{
@@ -41,13 +42,14 @@
       border-radius: 10px;
       background-color: transparent;
       transition: 0.3s ease-in-out;
-      &:hover {
+      &:hover:enabled {
         cursor: pointer;
         background-color: #503975;
         color: #FCF7FF;
       }
     }
   }
+
   .my-checkbox {
     background-color: transparent;
     padding-left: 10px;
@@ -65,5 +67,8 @@
 
 }
 
+.task-uncomplete {
+  display: none;
+}
 
 

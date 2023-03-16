@@ -22,7 +22,6 @@ const categoryFinder = function (taskTitle) {
 const categoryFinderApi = function (taskTitle, callback) {
   request(
     `https://customsearch.googleapis.com/customsearch/v1?key=${process.env.GOOGLE_API_KEY}&cx=${process.env.GOOGLE_ENGINE_ID}&q=${taskTitle}`,
-    // `https://customsearch.googleapis.com/customsearch/v1?key=AIzaSyAfocBMJa0FOqZWCAZWqOIjoF9BsU_BKyo&cx=c2c907cd368fa4916&q=${taskTitle}`,
     (err, response, body) => {
       let results = JSON.parse(body).items;
       console.log("results:", results)
@@ -156,7 +155,7 @@ router.post("/:id", (req, res) => {
   ];
   db.query(
     `UPDATE tasks
-      SET title=$1 , category=$2 , is_important=$3, date=NOW()
+      SET title=$1 , category=$2 , is_important=$3
       WHERE id=$4;
     `,
     taskValues,
@@ -184,7 +183,7 @@ router.post("/:id/delete", (req, res) => {
 
 // complete
 router.post("/:id/complete", (req, res) => {
-  console.log("complete route firing")
+  console.log("complete route firing");
   db.query(
     `UPDATE tasks SET is_completed = true WHERE id=$1;`,
     [`${req.params.id}`],
@@ -192,6 +191,21 @@ router.post("/:id/complete", (req, res) => {
       res.redirect("/");
       if (err) {
         console.log("cannot complete task", err);
+      }
+    }
+  );
+});
+
+
+router.post("/:id/uncomplete", (req, res) => {
+  console.log("complete route firing");
+  db.query(
+    `UPDATE tasks SET is_completed = false WHERE id=$1;`,
+    [`${req.params.id}`],
+    (err, result) => {
+      res.redirect("/");
+      if (err) {
+        console.log("cannot uncomplete task", err);
       }
     }
   );
