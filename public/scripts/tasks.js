@@ -2,7 +2,6 @@
 let loadTasks;
 
 $(() => {
-  //this is document ready
   let tasks = [];
   const $tasksList = $("#tasks");
   let category = "all";
@@ -47,15 +46,7 @@ $(() => {
     $('.current_page').html(`<i class="fa-solid fa-list-check"></i> Completed Tasks`);
   });
 
-  $(".task-uncomplete").on("submit", (event) => {
-    // category = "completed"
-    event.stopPropagation()
-    console.log("string", $(this));
-    // filterFunction();
-  })
-
   const filterFunction = () => {
-    // category filter
     $tasksList.empty();
     const filtered = tasks.filter((task) => {
       if (
